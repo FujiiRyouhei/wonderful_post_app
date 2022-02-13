@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit ]
+  before_action :set_article, only: %i[ show edit update destroy ]
 
   def index
     @articles = Article.all
@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @articles.save
-      redirect_to @article, notice: "Article was successfully created."
+      redirect_to @article, notice: t('notice.create')
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: "Article was successfully updated."
+      redirect_to @article, notice: t('notice.update')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to articles_url, notice: "Sample article was successfully destroyed."
+    redirect_to articles_url, notice: t('notice.destroy')
   end
 
   private
