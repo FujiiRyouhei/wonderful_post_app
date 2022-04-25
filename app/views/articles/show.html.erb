@@ -8,5 +8,10 @@
     <%= @article.content %>
   </div>
 </div>
-<%= link_to '編集', edit_article_path(@article), class: "btn btn-warning" %>
+<% if @article.user == current_user %>
+  <td><%= link_to '編集', edit_article_path(@article), class: "btn btn-warning" %></td>
+<% else %>
+  <td></td>
+  <td></td>
+<% end %>
 <%= link_to '一覧', articles_path, class: "btn btn-secondary" %>
