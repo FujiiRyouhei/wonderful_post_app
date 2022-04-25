@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ create update destroy ]
 
   def index
     @articles = Article.all
@@ -17,7 +18,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @articles.save
+    if @article.save
       redirect_to @article, notice: t('notice.create')
     else
       render :new, status: :unprocessable_entity
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit(:title, :content).merge(user_id: current_user.id)
     end
 
 
