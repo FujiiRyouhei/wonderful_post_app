@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :sample_articles
   resources :articles
   resources :mypage, only: :show
   root :to => 'articles#index'
