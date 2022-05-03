@@ -3,3 +3,12 @@ ja:
     create: 記事を作成しました
     update: 記事を編集しました
     destroy: 記事を削除しまし
+
+  views:
+    pagination:
+      first: 先頭
+      last: 最終
+      previous: 前ページ
+      next: 次ページ
+      truncate: "..."
+      

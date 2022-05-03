@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[ create update destroy ]
 
   def index
-    @articles = Article.all
+    # @articles = Article.all
+    @articles = Article.order(:id).page params[:page]
   end
 
   def show
