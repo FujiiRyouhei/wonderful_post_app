@@ -39,6 +39,13 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: t('notice.destroy')
   end
 
+  def search
+    @articles = Article.search(params[:title])
+    @articles = @articles.page(params[:page])
+    @title = params[:title]
+    render "index"
+  end
+
   private
     def set_article
       @article = Article.find(params[:id])
