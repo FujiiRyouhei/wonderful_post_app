@@ -16,6 +16,7 @@
     ii += 1
     user.articles.find_or_create_by!(title: "No.#{ii}: user00#{i}の記事") do |article|
       article.content = "No.#{ii}: user00#{i}の記事の本文"
+      article.tags = Tag.all
     end
   end
 end
